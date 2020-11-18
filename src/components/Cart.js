@@ -1,39 +1,24 @@
-import React, { Component, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 
 import './style.css'
+import { updateCartQty, dropCartQty } from '../actions/itemActions'
 
-class Cart extends Component {
+const Cart = (props) => {
 
-    constructor(props) {
-        super(props);
-        this.state = {quantity: 1, viewTotal: 0};
-    }
+        const {cart, total} = props
 
-    
-    render() {
-        const {cart} = this.props
-        let initialTotal = 0
-        let tempQuantity  = 0
-
-        cart.forEach(item => {
-          initialTotal += +(item.price)
-        //   this.setState({viewTotal: initialTotal})
-        });
-        
         const incrementPrice = (item) => {
-            tempQuantity += 1
-            this.state.quantity = tempQuantity
-            initialTotal += +(item.price)
-            console.log(initialTotal)
+            props.updateCartQty(item)
         }
 
-        const decrementPrice = (price) => {
+        const decrementPrice = (item) => {
+            props.dropCartQty(item)
         }
-
 
         return(
-            <div>
+            <div className="item-reciept">
                 {cart.map((item) => {
                     return(
                         <div>
@@ -43,42 +28,38 @@ class Cart extends Component {
                                 </div>
                                 <div className="cart-item-details">
                                     <h3><b>{item.title}</b></h3>
-                                    <h4>${item.price}</h4>
+                                    <h4>${item.price * item.quantity}</h4>
                                     <div className="quantity">
                                         <input type="button" className="decrement" value="-" onClick={() => decrementPrice(item)}/>
-                                        <h3 className="value">{this.state.quantity}</h3>
-                                        <input type="button" className="increment" value="+" onClick={() => incrementPrice(item)} />
+                                        <h3 className="value">{item.quantity}</h3>
+                                        <input type="button" className="increment" value="+" onClick={() => incrementPrice(item)} /> 
                                     </div>
                                 </div>
                             </div>
+                            <hr/>
                         </div>
                     )
                 })}
+                <div className="reciept">
+                    <h2>Total: ${total}</h2>
+                    <input type="button" className="checkout" value="Check out" />
+                </div>
             </div>
         )
-    }
     
 }
 
 
 const mapStateToProps = (store) =>{
     return {
-        cart: store.cartReducer.cart
+        cart: store.cartReducer.cart,
+        total: store.cartReducer.total
     }
 }
 
-export default connect(mapStateToProps)(Cart)
+Cart.propTypes = {
+    updateCartQty: PropTypes.func.isRequired,
+    dropCartQty: PropTypes.func.isRequired
+}
 
-// cart.forEach(item => {
-//     return(
-        // <div>
-        //     <div className="item-pic">
-        //         <img>{item.img}</img>
-        //     </div>
-        //     <div className="item-details">
-        //         <h4><b>{item.title}</b></h4>
-        //         <p>${item.price}</p>
-        //     </div>
-        // </div>
-//     )
-// });
+export default connect(mapStateToProps, {updateCartQty, dropCartQty})(Cart)

@@ -52,7 +52,7 @@ const TemplateForm = (props) =>{
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">
-                Already have an account ? <Link to="./Signup">Sign Up</Link>
+                Already have an account ? <Link to="./Signup" style={{color:'blue'}}>Sign Up</Link>
             </div>
         </div>
     )

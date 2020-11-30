@@ -34,7 +34,7 @@ const Cart = (props) => {
                                     <h4>${item.price * item.quantity}</h4>
                                     <div className="quantity">
                                         <input type="button" className="decrement" value="-" onClick={() => decrementPrice(item)}/>
-                                        <h3 className="value">{item.quantity}</h3>
+                                        <h5 className="value">{item.quantity}</h5>
                                         <input type="button" className="increment" value="+" onClick={() => incrementPrice(item)} /> 
                                     </div>
                                 </div>

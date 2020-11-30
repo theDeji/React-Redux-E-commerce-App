@@ -12,7 +12,7 @@ const Header = (props) => {
     return (
         <header>
             <div className="logo">
-                <Link to="/"><h1>s!ope.</h1></Link>
+                <Link to="/ItemList"><h1 style={{color:'white'}}>s!ope.</h1></Link>
             </div>
             <div className="search-cart">
                 <form onSubmit={(e) => e.preventDefault()}>
@@ -20,7 +20,7 @@ const Header = (props) => {
                     <input type="submit" value="Go" />
                 </form>
                 <Badge badgeContent={props.cart.length} color="primary">
-                    <Link to='./Cart'><ShoppingCartRoundedIcon /></Link>
+                    <Link to='./Cart' style={{color:'white'}}><ShoppingCartRoundedIcon /></Link>
                 </Badge>            
             </div>
         </header>

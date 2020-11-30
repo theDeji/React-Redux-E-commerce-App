@@ -5,7 +5,8 @@
 }
 
 header{
-    display: flex !important;
+    height: 70px;
+    display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     color: white;
     background-color: rgb(82, 20, 182);
@@ -29,7 +30,6 @@ h2{
 
 a{
     text-decoration: none !important;
-    color: white !important;
 }
 
 .logo{
@@ -151,7 +151,8 @@ h2{
     border-radius: 5px;
 }
 
-.quantity h3{
+.quantity h5{
+    margin-top: 22px ;
     margin-left: 10px;
     margin-right: 10px;
 }

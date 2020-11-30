@@ -5,7 +5,6 @@ import Badge from '@material-ui/core/Badge'
 import { connect } from 'react-redux'
 
 import './style.css'
-import Cart from './Cart'
 
 const Header = (props) => {
 

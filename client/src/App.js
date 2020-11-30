@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Cart from './components/Cart'
 import Home from './components/Home'
 import ItemList from './components/ItemList'
-import Item from './components/Item'
 import PrivateRoute from './components/PrivateRoute';
 import store from './store'
 import LoggerContextProvider from './contexts/Logger';

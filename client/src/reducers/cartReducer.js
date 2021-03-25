@@ -1,13 +1,16 @@
 import { ADD_TO_CART, DROP_CART_QTY, REMOVE_FROM_CART, UPDATE_CART_QTY } from '../actions/types'
+
+
 const initialCartState = {
-    cart: [],
+    cart: [
+    ],
     total: 0
 }
 
 export default function cartReducer(state = initialCartState, action) {
     switch(action.type){
         case ADD_TO_CART:
-            const item = state.cart.find(item => item.title == action.payload.title)
+            const item = state.cart.find(item => item.name == action.payload.name)
             if(!item){
                 Object.assign(state, {
                     cart: [...state.cart, action.payload],
@@ -16,7 +19,7 @@ export default function cartReducer(state = initialCartState, action) {
             }else{
                 item.quantity = item.quantity + 1
                 const newState = state.cart.map(cartItem =>{
-                    if(item.id == cartItem){
+                    if(item.name == cartItem){
                         return item
                     }else{
                         return cartItem
@@ -29,7 +32,7 @@ export default function cartReducer(state = initialCartState, action) {
             }
             return {...state}
         case UPDATE_CART_QTY:
-            const newItem = state.cart.find(item => item.title == action.payload.title)
+            const newItem = state.cart.find(item => item.name == action.payload.name)
             if(!newItem){
                 return null
             }else{
@@ -38,7 +41,7 @@ export default function cartReducer(state = initialCartState, action) {
                 })
                 newItem.quantity = newItem.quantity + 1
                 const newState = state.cart.map(cartItem =>{
-                    if(newItem.id == cartItem){
+                    if(newItem.name == cartItem){
                         return newItem
                     }else{
                         return cartItem
@@ -51,7 +54,7 @@ export default function cartReducer(state = initialCartState, action) {
             }
             return {...state}
         case DROP_CART_QTY:
-            const newItem_ = state.cart.find(item => item.title == action.payload.title)
+            const newItem_ = state.cart.find(item => item.name == action.payload.name)
             if(!newItem_){
                 return null
             }else{
@@ -65,7 +68,7 @@ export default function cartReducer(state = initialCartState, action) {
                 }
                 
                 const newState = state.cart.map(cartItem =>{
-                    if(newItem_.id == cartItem){
+                    if(newItem_.name == cartItem){
                         return newItem_
                     }else{
                         return cartItem
